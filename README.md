@@ -11,11 +11,11 @@ E-mail: leo.primieri@gmail.com
 
 # Tecnologias
 
-1. Styled Components
-2. React Router Do
-3. React Notifications Component
-4. UUID
-5. Leaflet
-6. React Leaflet
-7. Firebase
-8. React Icons / Feather Icons
+- Styled Components
+- React Router Do
+- React Notifications Component
+- UUID
+- Leaflet
+- React Leaflet
+- Firebase
+- React Icons / Feather Icons
