@@ -9,12 +9,12 @@ import signup from '../../assets/signup.svg';
 import wallpaper from '../../assets/wallpaperSignUp.jpg';
 
 import { Container, Form, InputLabel, FormContent } from './styles';
-import Header from '../../components/Header';
 import ShapeDivider from '../../components/ShapeDivider';
 import {
   ErrorNotification,
   SuccessNotification,
 } from '../../helpers/ToastNotifications';
+import SideBar from '../../components/SideBar';
 
 const SignUp = () => {
   const history = useHistory();
@@ -36,7 +36,7 @@ const SignUp = () => {
 
   return (
     <Container background={wallpaper}>
-      <Header />
+      <SideBar />
       <Form onSubmit={handleSubmit}>
         <FormContent>
           <h4>Cadastre-se para postar objetos perdidos</h4>

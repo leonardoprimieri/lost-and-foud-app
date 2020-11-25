@@ -2,19 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 export const Content = styled.div`
-  position: relative;
   display: flex;
   .map--popup .leaflet-popup-content {
-    font-weight: bold;
-    margin: 8px 12px;
-
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
   .map--popup .leaflet-popup-tip-container {
     display: none;
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    border: 3px solid var(--dark-purple);
+    padding: 0;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .add-lostItem {

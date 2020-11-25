@@ -72,6 +72,17 @@ export const InputLabel = styled.div`
     font-size: 16px;
     color: var(--light-color);
   }
+
+  .checkbox {
+    display: flex;
+    align-self: baseline;
+    width: 58%;
+
+    label {
+      width: 100%;
+      align-self: center;
+    }
+  }
 `;
 
 export const FormContent = styled.section``;

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import firebase from '../../services/FirebaseConnection';
-import { Container } from './styles';
+import Firebase from '../../services/FirebaseConnection';
+
+import { FiPhone } from 'react-icons/fi';
+import { Container, Content, Actions } from './styles';
 
 const LostItemComponent = ({ data }) => {
   const [itemImage, setItemImage] = useState();
+
   useEffect(() => {
     async function getItemImage() {
-      var storage = firebase.storage();
+      var storage = Firebase.storage();
       var storageRef = storage.ref();
       var tangRef = storageRef.child(`images/${data.image}`);
       tangRef
@@ -21,12 +24,31 @@ const LostItemComponent = ({ data }) => {
 
     getItemImage();
   }, [data]);
+
   return (
     <Container>
-      <h1>{data.owner}</h1>
-      <p>{data.whatsapp}</p>
-      <p>{data.image}</p>
-      <img src={itemImage} alt="" />
+      <Content>
+        <img src={itemImage} alt="lost item" />
+        <h1>{data.description}</h1>
+
+        <h2>Proprietário</h2>
+        <h3>
+          <i>{data.owner}</i>
+        </h3>
+        <h2>Reside em</h2>
+        <h3>
+          <i>{data.city}</i>
+        </h3>
+        <Actions>
+          <a
+            href={`https://api.whatsapp.com/send?phone=${data.whatsapp}&text=Olá, acho que encontrei o que você perdeu!`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FiPhone />
+          </a>
+        </Actions>
+      </Content>
     </Container>
   );
 };

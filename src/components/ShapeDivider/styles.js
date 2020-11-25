@@ -20,4 +20,8 @@ export const Container = styled.div`
   .custom-shape-divider-bottom-1605971322 .shape-fill {
     fill: #282828;
   }
+
+  @media (max-width: 725px) {
+    display: none;
+  }
 `;

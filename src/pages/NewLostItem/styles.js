@@ -29,12 +29,14 @@ export const Container = styled.div`
     align-items: center;
     margin: 22px;
   }
+  @media (max-width: 480px) {
+    margin-top: 200px;
+  }
 
   .responsive {
     @media (max-width: 680px) {
       display: flex;
       flex-direction: column;
-      margin-top: 500px;
     }
   }
 `;

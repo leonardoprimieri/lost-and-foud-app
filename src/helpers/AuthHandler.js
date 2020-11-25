@@ -1,10 +1,23 @@
+import Firebase from '../services/FirebaseConnection';
+
 export function logOut() {
-  localStorage.removeItem('email');
-  return (window.location.href = '/');
+  localStorage.removeItem('uuid');
+  Firebase.auth()
+    .signOut()
+    .then(() => {
+      window.location.href = '/';
+    });
 }
 
 export function isLogged() {
-  let email = localStorage.getItem('email');
+  let user = null;
 
-  return email ? true : false;
+  Firebase.auth().onAuthStateChanged((user) => {
+    if (user !== null) {
+      user = user.uid;
+    } else {
+      user = null;
+    }
+  });
+  return user ? true : false;
 }

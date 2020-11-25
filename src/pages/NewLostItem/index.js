@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import Header from '../../components/Header';
-
+import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import firebase, { storage } from '../../services/FirebaseConnection';
-
-import { isLogged } from '../../helpers/AuthHandler';
+import Firebase, { storage } from '../../services/FirebaseConnection';
 
 import {
   ErrorNotification,
@@ -22,6 +19,9 @@ import { Form, FormContent, InputLabel } from '../SignUp/styles';
 import { Container, MapContent } from './styles';
 
 import { FiPlus } from 'react-icons/fi';
+import SideBar from '../../components/SideBar';
+import { useHistory } from 'react-router-dom';
+import MustBeLogged from '../../components/MustBeLogged';
 
 const NewLostItem = () => {
   const [owner, setOwner] = useState('');
@@ -33,6 +33,20 @@ const NewLostItem = () => {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
   const [progress, setProgress] = useState('');
+
+  const history = useHistory();
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    Firebase.auth().onAuthStateChanged((user) => {
+      if (user !== null) {
+        setUser(user.uid);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
 
   function handleImageUpload(e) {
     if (e.target.files[0]) {
@@ -51,9 +65,10 @@ const NewLostItem = () => {
       longitude: Number(position.longitude),
       whatsapp,
       city,
+      id: uuidv4(),
     };
     try {
-      await firebase.database().ref(`/items`).push(data);
+      await Firebase.database().ref(`/items`).push(data);
 
       const uploadData = storage.ref(`images/${image.name}`).put(image);
       uploadData.on(
@@ -72,10 +87,9 @@ const NewLostItem = () => {
         }
       );
 
-      return SuccessNotification(
-        'Done!',
-        'Your item was successfully registered.'
-      );
+      SuccessNotification('Done!', 'Your item was successfully registered.');
+
+      return history.push('/lost-items');
     } catch (error) {
       return ErrorNotification(
         'Error',
@@ -99,8 +113,8 @@ const NewLostItem = () => {
 
   return (
     <Container background={wallpaper}>
-      <Header />
-      {isLogged() ? (
+      <SideBar />
+      {user ? (
         <Form onSubmit={handleSubmit} className="responsive">
           <FormContent>
             <h4>Cadastrar item perdido</h4>
@@ -169,7 +183,7 @@ const NewLostItem = () => {
                 alignSelf: 'center',
                 margin: 20,
               }}
-              zoom={15}
+              zoom={8}
               onClick={handleMapClick}
             >
               <TileLayer
@@ -187,7 +201,7 @@ const NewLostItem = () => {
           </MapContent>
         </Form>
       ) : (
-        <h1>Você precisa ta logado amigo!</h1>
+        <MustBeLogged>Para cadastrar um item, faça login</MustBeLogged>
       )}
     </Container>
   );

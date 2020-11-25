@@ -11,6 +11,10 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
+  @media (max-width: 725px) {
+    margin-top: 200px;
+  }
+
   h4 {
     color: var(--light-color);
     margin: 12px;

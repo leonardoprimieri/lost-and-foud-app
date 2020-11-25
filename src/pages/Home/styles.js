@@ -18,12 +18,6 @@ export const Content = styled.section`
   @media (max-width: 1030px) {
     flex-direction: column;
   }
-
-  footer {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-  }
 `;
 
 export const TitleArea = styled.section`

@@ -14,6 +14,7 @@ import SideBar from '../../components/SideBar';
 
 import firebase from '../../services/FirebaseConnection';
 import LostItemComponent from '../../components/LostItemComponent';
+import Loading from '../../components/Loading';
 
 const LostItemsMap = () => {
   const [lostItems, setLostItems] = useState({});
@@ -69,22 +70,26 @@ const LostItemsMap = () => {
           <TileLayer
             url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
           />
-          {Object.keys(lostItems).map((item, key) => (
-            <Marker
-              icon={mapIcon}
-              position={[lostItems[item].latitude, lostItems[item].longitude]}
-              key={key}
-            >
-              <Popup
-                closeButton={false}
-                minWidth={240}
-                maxWidth={240}
-                className="map--popup"
+          {JSON.stringify(lostItems) !== JSON.stringify({}) ? (
+            Object.keys(lostItems).map((item, key) => (
+              <Marker
+                icon={mapIcon}
+                position={[lostItems[item].latitude, lostItems[item].longitude]}
+                key={key}
               >
-                <LostItemComponent data={lostItems[item]} />
-              </Popup>
-            </Marker>
-          ))}
+                <Popup
+                  closeButton={false}
+                  minWidth={240}
+                  maxWidth={240}
+                  className="map--popup"
+                >
+                  <LostItemComponent data={lostItems[item]} />
+                </Popup>
+              </Marker>
+            ))
+          ) : (
+            <Loading>Carregando itens perdidos</Loading>
+          )}
         </Map>
         <Link to="/lost-items/new" className="add-lostItem">
           <button>

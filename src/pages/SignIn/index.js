@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'react-notifications-component/dist/theme.css';
 
-import firebase from '../../services/FirebaseConnection';
+import Firebase from '../../services/FirebaseConnection';
 
 import { useHistory } from 'react-router-dom';
 
@@ -9,12 +9,12 @@ import signin from '../../assets/signin.svg';
 import wallpaper from '../../assets/wallpaperSignIn.jpg';
 
 import { Container, Form, InputLabel, FormContent } from './styles';
-import Header from '../../components/Header';
 import ShapeDivider from '../../components/ShapeDivider';
 import {
   SuccessNotification,
   ErrorNotification,
 } from '../../helpers/ToastNotifications';
+import SideBar from '../../components/SideBar';
 
 const SignIn = () => {
   const history = useHistory();
@@ -22,13 +22,22 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [rememberMe, setRememberMe] = useState('');
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await Firebase.auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((response) => {
+          localStorage.setItem('uuid', response.user.uid);
+          if (rememberMe === true) {
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+          }
+        });
       SuccessNotification('Success', 'You are logged in!');
-      localStorage.setItem('email', email);
       return history.push('/lost-items');
     } catch (error) {
       ErrorNotification('Ops!', String(error));
@@ -37,7 +46,7 @@ const SignIn = () => {
 
   return (
     <Container background={wallpaper}>
-      <Header />
+      <SideBar />
       <Form onSubmit={handleSubmit}>
         <FormContent>
           <h4>Insira seus dados e faça login na sua conta</h4>
@@ -58,6 +67,16 @@ const SignIn = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="checkbox">
+              <label htmlFor="remember">Lembrar-me</label>
+              <input
+                type="checkbox"
+                name="remember"
+                id="remember"
+                value={rememberMe}
+                onChange={setRememberMe}
+              />
+            </div>
             <button type="submit">Entrar</button>
           </InputLabel>
         </FormContent>

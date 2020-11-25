@@ -12,8 +12,8 @@ export const Container = styled.div`
   height: 100vh;
 
   z-index: 9999;
-
-  @media (max-width: 480px) {
+  transition: all 200ms ease;
+  @media (max-width: 725px) {
     padding: 4px;
     width: 100vw;
     height: auto;
@@ -24,11 +24,13 @@ export const Container = styled.div`
     font-weight: 900;
     font-size: 24px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 725px) {
       display: none;
     }
   }
-
+  .button-link.active-link {
+    background: var(--primary-color);
+  }
   button,
   a.button-link {
     background: var(--dark-purple);
@@ -41,6 +43,11 @@ export const Container = styled.div`
     padding: 16px;
     cursor: pointer;
     transition: all 400ms ease;
+
+    @media (max-width: 725px) {
+      margin: 6px;
+      padding: 8px;
+    }
 
     :hover {
       filter: brightness(50%);
@@ -60,7 +67,7 @@ export const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    @media (max-width: 480px) {
+    @media (max-width: 725px) {
       flex-direction: row;
       height: 100%;
     }
