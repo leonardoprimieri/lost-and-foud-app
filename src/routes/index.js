@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import LostItemsMap from '../pages/LostItemsMap';
@@ -13,7 +13,7 @@ import Admin from '../pages/Admin';
 
 function Routes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/lost-items/new" component={NewLostItem} />
@@ -27,7 +27,7 @@ function Routes() {
 
         <Route path="/admin" component={Admin} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
