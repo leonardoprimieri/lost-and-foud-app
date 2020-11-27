@@ -45,7 +45,8 @@ const LostItemComponent = ({ data }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FiPhone />
+            <FiPhone size={24} />
+            <span>Entrar em contato</span>
           </a>
         </Actions>
       </Content>

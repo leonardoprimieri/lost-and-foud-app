@@ -5,7 +5,7 @@ import SideBar from '../../components/SideBar';
 
 import Firebase, { storage } from '../../services/FirebaseConnection';
 
-import { Container, Content, Item } from './styles';
+import { Container, Content } from './styles';
 
 const Admin = () => {
   const [lostItems, setLostItems] = useState({});
@@ -58,20 +58,36 @@ const Admin = () => {
       <SideBar />
       <Content>
         {user ? (
-          Object.keys(lostItems).map((item, key) => (
-            <Item key={key}>
-              <h3>Nome: {lostItems[item].owner}</h3>
-              <h3>{lostItems[item].description}</h3>
-              <h3>{lostItems[item].whatsapp}</h3>
-              <h3>{lostItems[item].city}</h3>
-              <button onClick={() => deleteItem(item)}>
-                <FiTrash />
-              </button>
-            </Item>
-          ))
+          <table>
+            <caption>Dados cadastrados no sistema</caption>
+            <thead>
+              <tr>
+                <th scope="col">Proprietário</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Whatsapp</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(lostItems).map((item, key) => (
+                <tr key={key}>
+                  <td data-label="Proprietário">{lostItems[item].owner}</td>
+                  <td data-label="Descrição">{lostItems[item].description}</td>
+                  <td data-label="Whatsapp">{lostItems[item].whatsapp}</td>
+                  <td data-label="Cidade">{lostItems[item].city}</td>
+                  <td data-label="Ação">
+                    <button onClick={() => deleteItem(item)}>
+                      <FiTrash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         ) : (
           <MustBeLogged>
-            Para acessar o administrativo, você precisa estar logado
+            Ops!, você precisa estar logado para ver isso!
           </MustBeLogged>
         )}
       </Content>

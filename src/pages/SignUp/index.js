@@ -9,7 +9,6 @@ import signup from '../../assets/signup.svg';
 import wallpaper from '../../assets/wallpaperSignUp.jpg';
 
 import { Container, Form, InputLabel, FormContent } from './styles';
-import ShapeDivider from '../../components/ShapeDivider';
 import {
   ErrorNotification,
   SuccessNotification,
@@ -62,7 +61,6 @@ const SignUp = () => {
         </FormContent>
         <img src={signup} alt="two people doing login" />
       </Form>
-      <ShapeDivider />
     </Container>
   );
 };

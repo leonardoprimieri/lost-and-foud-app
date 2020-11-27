@@ -10,6 +10,7 @@ import NewLostItem from '../pages/NewLostItem';
 import LeaveComment from '../pages/LeaveComment';
 import Comments from '../pages/Comments';
 import Admin from '../pages/Admin';
+import NotFound from '../pages/NotFound';
 
 function Routes() {
   return (
@@ -26,6 +27,8 @@ function Routes() {
         <Route path="/leave-comment" component={LeaveComment} />
 
         <Route path="/admin" component={Admin} />
+
+        <Route path="*" component={NotFound} />
       </Switch>
     </HashRouter>
   );

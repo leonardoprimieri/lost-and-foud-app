@@ -11,7 +11,6 @@ import {
   SuccessNotification,
 } from '../../helpers/ToastNotifications';
 import SideBar from '../../components/SideBar';
-import ShapeDivider from '../../components/ShapeDivider';
 import { useHistory } from 'react-router-dom';
 
 const LeaveComment = () => {
@@ -91,7 +90,6 @@ const LeaveComment = () => {
         </FormContent>
         <img src={comment} alt="Posting a commnet" />
       </Form>
-      <ShapeDivider />
     </Container>
   );
 };

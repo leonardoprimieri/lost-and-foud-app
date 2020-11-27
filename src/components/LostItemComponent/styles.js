@@ -36,6 +36,10 @@ export const Content = styled.div`
     font-size: 16px;
     cursor: pointer;
     width: 100%;
+    font-weight: bold;
+    svg {
+      margin-right: 12px;
+    }
   }
 `;
 
