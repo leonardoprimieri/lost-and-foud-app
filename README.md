@@ -9,7 +9,7 @@ Projeto feito na disciplina de React JS da IMED. Consiste em cadastrar itens per
 Nome: Leonardo Merlo Primieri
 E-mail: leo.primieri@gmail.com
 
-# Tecnologias
+# Bibliotecas
 
 - Styled Components
 - React Router Do
@@ -19,3 +19,8 @@ E-mail: leo.primieri@gmail.com
 - React Leaflet
 - Firebase
 - React Icons / Feather Icons
+
+# Tecnoligias
+
+- ReactJS
+- Firebase
