@@ -40,14 +40,14 @@ const Home = () => {
               <span>Deixar um comentário</span>
             </Link>
           </div>
+          <footer>
+            <span>Desenvolvido por Leonardo Merlo Primieri</span> <br />
+            <span>Email: leo.primieri@gmail.com</span>
+          </footer>
         </TitleArea>
         <LogoArea>
           <img src={manLookingForSomething} alt="A man looking for something" />
         </LogoArea>
-        {/* <footer>
-          <span>Desenvolvido por Leonardo Merlo Primieri</span> <br />
-          <span>Email: leo.primieri@gmail.com</span>
-        </footer> */}
       </Content>
     </Container>
   );

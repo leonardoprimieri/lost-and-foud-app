@@ -26,6 +26,10 @@ export const TitleArea = styled.section`
   align-items: center;
   flex-direction: column;
 
+  footer span {
+    color: var(--light-color);
+  }
+
   h1 {
     font-size: 64px;
     letter-spacing: 2px;
