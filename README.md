@@ -12,7 +12,7 @@ E-mail: leo.primieri@gmail.com
 # Bibliotecas
 
 - Styled Components
-- React Router Do
+- React Router Dom
 - React Notifications Component
 - UUID
 - Leaflet

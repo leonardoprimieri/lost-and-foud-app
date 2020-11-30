@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Firebase from '../../services/FirebaseConnection';
 
-import { FiPhone } from 'react-icons/fi';
+import { FiMapPin, FiPhone } from 'react-icons/fi';
 import { Container, Content, Actions } from './styles';
 
 const LostItemComponent = ({ data }) => {
@@ -47,6 +47,15 @@ const LostItemComponent = ({ data }) => {
           >
             <FiPhone size={24} />
             <span>Entrar em contato</span>
+          </a>
+          <a
+            class="google-maps-button"
+            href={`https://www.google.com/maps/dir/?api=1&destination=${data.latitude}, ${data.longitude}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FiMapPin size={24} />
+            Ver rotas no Google Maps
           </a>
         </Actions>
       </Content>

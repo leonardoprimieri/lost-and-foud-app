@@ -28,6 +28,7 @@ export const Content = styled.div`
     padding: 22px;
     background: var(--dark-purple);
     display: flex;
+
     justify-content: center;
     align-items: center;
     align-self: baseline;
@@ -35,7 +36,6 @@ export const Content = styled.div`
     color: var(--light-color);
     font-size: 16px;
     cursor: pointer;
-    width: 100%;
     font-weight: bold;
     svg {
       margin-right: 12px;
@@ -44,9 +44,7 @@ export const Content = styled.div`
 `;
 
 export const Actions = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
+  .google-maps-button {
+    background: #6ab04c;
+  }
 `;
