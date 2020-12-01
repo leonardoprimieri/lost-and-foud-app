@@ -57,17 +57,17 @@ const NewLostItem = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const data = {
-      owner,
-      description,
-      image: image.name,
-      latitude: Number(position.latitude),
-      longitude: Number(position.longitude),
-      whatsapp,
-      city,
-      id: uuidv4(),
-    };
     try {
+      const data = {
+        owner,
+        description,
+        image: image.name,
+        latitude: Number(position.latitude),
+        longitude: Number(position.longitude),
+        whatsapp,
+        city,
+        id: uuidv4(),
+      };
       await Firebase.database().ref(`/items`).push(data);
 
       const uploadData = storage.ref(`images/${image.name}`).put(image);
